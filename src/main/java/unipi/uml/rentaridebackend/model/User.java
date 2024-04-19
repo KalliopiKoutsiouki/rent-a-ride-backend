@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -48,6 +49,9 @@ public class User {
     @Column(name = "AGE")
     @NotNull(message = "Age is mandatory")
     private int age;
+
+    @OneToMany(mappedBy = "author")
+    private List<Comment> comments;
 
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "USER_ID"))

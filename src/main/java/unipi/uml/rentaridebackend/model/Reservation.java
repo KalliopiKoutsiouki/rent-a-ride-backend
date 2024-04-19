@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "RESERVATION")
 @Getter
 @Setter
 public class Reservation {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +26,26 @@ public class Reservation {
     @JoinColumn(name = "CAR_ID", referencedColumnName = "id")
     private Car car;
 
+    @Column(name = "PENDING")
+    private boolean pending;
+
     @JsonIgnore
     @OneToOne(mappedBy = "reservation")
     private Payment paymentRecord;
 
-//    @Column(name = "FROM")
-//    private Date from;
-//
-//    @Column(name = "TO")
-//    private Date to;
+    @JsonIgnore
+    @OneToMany(mappedBy = "reservation")
+    private List<Comment> commments;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "reservation")
+    private List<Notification> notifications;
+
+    @Column(name = "FROM")
+    private Date from;
+
+    @Column(name = "TO")
+    private Date to;
 
 
 }

@@ -21,7 +21,7 @@ public class Payment {
     @Column(name = "AMOUNT")
     private double amount;
 
-//    @Column(name = "PAYMENT_METHOD")
-//    @Enumerated(EnumType.STRING)
-//    private PaymentMethod paymentMethod;
+    @Column(name = "PAYMENT_METHOD")
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
 }

@@ -15,7 +15,7 @@ public class Renter extends User{
     @OneToOne(mappedBy = "renter")
     private Reservation reservation;
 
-//    @Column(name = "YEARS_DRIVING")
-//    private int yearsDriving;
+    @Column(name = "YEARS_DRIVING")
+    private int yearsDriving;
 
 }

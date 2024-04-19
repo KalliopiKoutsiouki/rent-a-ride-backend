@@ -4,7 +4,7 @@ public enum UserRole {
 
     ROLE_USER ("ROLE_USER"),
     ROLE_ADMIN ("ROLE_ADMIN"),
-    ROLE_RENTER ("ROLE_RENTER");
+    ROLE_LEASER ("ROLE_LEASER");
 
     private final String value;
 
