@@ -33,14 +33,14 @@ public class Car {
     @Column(name = "IS_AVAILABLE")
     private boolean isAvailable;
 
-    @Column(name = "FROM")
-    private Date from;
+    @Column(name = "FROM_DATE")
+    private Date fromDate;
 
-    @Column(name = "TO")
-    private Date to;
+    @Column(name = "TO_DATE")
+    private Date toDate;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "reservation")
+    @OneToOne(mappedBy = "car")
     private Reservation reservation;
 
     @JsonIgnore

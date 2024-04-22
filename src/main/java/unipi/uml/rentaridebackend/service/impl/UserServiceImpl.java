@@ -1,13 +1,22 @@
 package unipi.uml.rentaridebackend.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import unipi.uml.rentaridebackend.model.User;
+import unipi.uml.rentaridebackend.repository.UserRepository;
 import unipi.uml.rentaridebackend.service.UserService;
 
 import java.util.List;
 import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserRepository repository;
+
+    @Autowired
+    private PasswordEncoder encoder;
     @Override
     public List<User> getAllUsers() {
         return null;
@@ -15,7 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User userInfo) {
-        return null;
+        userInfo.setPassword(encoder.encode(userInfo.getPassword()));
+        return repository.save(userInfo);
     }
 
     @Override

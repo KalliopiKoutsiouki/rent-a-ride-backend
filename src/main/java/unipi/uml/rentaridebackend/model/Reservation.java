@@ -41,11 +41,11 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation")
     private List<Notification> notifications;
 
-    @Column(name = "FROM")
-    private Date from;
+    @Column(name = "FROM_DATE")
+    private Date fromDate;
 
-    @Column(name = "TO")
-    private Date to;
+    @Column(name = "TO_DATE")
+    private Date toDate;
 
 
 }
