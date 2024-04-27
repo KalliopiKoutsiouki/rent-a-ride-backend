@@ -9,8 +9,12 @@ import unipi.uml.rentaridebackend.service.PaymentService;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-    @Autowired
-    PaymentRepository paymentRepository;
+    private final PaymentRepository paymentRepository;
+
+    public PaymentServiceImpl(final PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
+    }
+
     @Override
     public Payment createPayment(Payment payment) {
         return null;

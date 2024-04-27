@@ -6,23 +6,33 @@ import unipi.uml.rentaridebackend.model.Car;
 import unipi.uml.rentaridebackend.repository.CarRepository;
 import unipi.uml.rentaridebackend.service.CarService;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService {
 
-    @Autowired
-    CarRepository carRepository;
 
-    @Override
-    public List<Car> getAllCars() {
-        return null;
+    private final CarRepository carRepository;
+
+    public CarServiceImpl(final CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
     @Override
-    public List<Car> getAllAvailableCars(Date from, Date to) {
-        return null;
+    public List<Car> getAllCars() {
+        return Optional.of(carRepository.findAll())
+                .orElseThrow(() -> new RuntimeException("No cars found."));
+
+    }
+
+    @Override
+    public List<Car> getAllAvailableCars(LocalDate from, LocalDate to) {
+        return Optional.of(carRepository.findAllAvailableCarsFromDateToDate(from, to))
+                .orElseThrow(() -> new RuntimeException("No available cars found for: " + from.toString() + " - " + to.toString()));
     }
 
     @Override

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -34,10 +35,10 @@ public class Car {
     private boolean isAvailable;
 
     @Column(name = "FROM_DATE")
-    private Date fromDate;
+    private LocalDate fromDate;
 
     @Column(name = "TO_DATE")
-    private Date toDate;
+    private LocalDate toDate;
 
     @JsonIgnore
     @OneToOne(mappedBy = "car")

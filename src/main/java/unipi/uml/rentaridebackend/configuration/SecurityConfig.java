@@ -25,6 +25,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import unipi.uml.rentaridebackend.filter.JwtAuthFilter;
+import unipi.uml.rentaridebackend.repository.UserRepository;
 import unipi.uml.rentaridebackend.service.security.UserDetailsServiceImpl;
 
 import java.util.Arrays;
@@ -33,12 +34,19 @@ import java.util.Arrays;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private JwtAuthFilter authFilter;
+
+    private final JwtAuthFilter authFilter;
+
+    private final UserRepository repository;
+
+    public SecurityConfig(UserRepository repository, JwtAuthFilter authFilter) {
+        this.repository = repository;
+        this.authFilter = authFilter;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl();
+        return new UserDetailsServiceImpl(repository);
     }
 
     @Bean

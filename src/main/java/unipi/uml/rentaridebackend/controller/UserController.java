@@ -1,7 +1,6 @@
 package unipi.uml.rentaridebackend.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unipi.uml.rentaridebackend.model.User;
 import unipi.uml.rentaridebackend.model.UserRole;
@@ -16,8 +15,11 @@ import java.util.Set;
 @RequestMapping({"/users"})
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(final UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping({"/all"})
     public List<User> getUsers() {

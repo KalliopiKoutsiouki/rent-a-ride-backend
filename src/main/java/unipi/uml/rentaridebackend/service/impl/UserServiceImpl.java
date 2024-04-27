@@ -12,11 +12,15 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
 
-    @Autowired
-    private PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
+
+    public UserServiceImpl(final UserRepository repository, final PasswordEncoder encoder) {
+        this.repository = repository;
+        this.encoder = encoder;
+    }
+
     @Override
     public List<User> getAllUsers() {
         return null;

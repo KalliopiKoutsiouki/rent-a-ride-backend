@@ -15,11 +15,15 @@ import unipi.uml.rentaridebackend.service.JwtService;
 @RequestMapping({"/auth"})
 public class AuthController {
 
-    @Autowired
-    private JwtService jwtService;
+    private final JwtService jwtService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+
+    public AuthController(final JwtService jwtService,final AuthenticationManager authenticationManager) {
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+    }
+
 
     @PostMapping("/generateToken")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest)  {

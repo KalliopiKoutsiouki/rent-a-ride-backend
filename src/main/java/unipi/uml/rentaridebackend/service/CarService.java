@@ -3,6 +3,7 @@ package unipi.uml.rentaridebackend.service;
 import org.springframework.stereotype.Service;
 import unipi.uml.rentaridebackend.model.Car;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface CarService {
 
     List<Car> getAllCars();
 
-    List<Car> getAllAvailableCars(Date from, Date to);
+    List<Car> getAllAvailableCars(LocalDate from, LocalDate to);
 
     Car addCar(Car car);
 
