@@ -43,11 +43,11 @@ public class User {
     private String mobilePhone;
 
     @Column(name = "EMAIL", unique = true)
-    @NotNull(message = "Email is mandatory")
+//    @NotNull(message = "Email is mandatory")
     private String email;
 
     @Column(name = "AGE")
-    @NotNull(message = "Age is mandatory")
+//    @NotNull(message = "Age is mandatory")
     private int age;
 
     @OneToMany(mappedBy = "author")

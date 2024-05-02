@@ -35,18 +35,19 @@ import java.util.Arrays;
 public class SecurityConfig {
 
 
-    private final JwtAuthFilter authFilter;
+    @Autowired
+    private JwtAuthFilter authFilter;
 
-    private final UserRepository repository;
+//    private final UserRepository repository;
 
-    public SecurityConfig(UserRepository repository, JwtAuthFilter authFilter) {
-        this.repository = repository;
-        this.authFilter = authFilter;
-    }
+//    public SecurityConfig(UserRepository repository, JwtAuthFilter authFilter) {
+//        this.repository = repository;
+//        this.authFilter = authFilter;
+//    }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl(repository);
+        return new UserDetailsServiceImpl();
     }
 
     @Bean

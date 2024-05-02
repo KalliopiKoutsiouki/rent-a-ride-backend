@@ -3,6 +3,7 @@ package unipi.uml.rentaridebackend.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import unipi.uml.rentaridebackend.exception.UserNotFoundException;
 import unipi.uml.rentaridebackend.model.User;
 import unipi.uml.rentaridebackend.repository.UserRepository;
 import unipi.uml.rentaridebackend.service.UserService;
@@ -12,14 +13,20 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository repository;
+//    private final UserRepository repository;
+//
+//    private final PasswordEncoder encoder;
+//
+//    public UserServiceImpl(final UserRepository repository, final PasswordEncoder encoder) {
+//        this.repository = repository;
+//        this.encoder = encoder;
+//    }
+    @Autowired
+    private UserRepository repository;
 
-    private final PasswordEncoder encoder;
+    @Autowired
+    private PasswordEncoder encoder;
 
-    public UserServiceImpl(final UserRepository repository, final PasswordEncoder encoder) {
-        this.repository = repository;
-        this.encoder = encoder;
-    }
 
     @Override
     public List<User> getAllUsers() {
@@ -48,7 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserByUserName(String userName) {
-        return Optional.empty();
+    public Optional<User> getUserByUserName(String userName)  throws UserNotFoundException{
+        return Optional.ofNullable(repository.findByUserName(userName)
+                .orElseThrow(() -> new UserNotFoundException("User with userName " + userName + " not found")));
     }
 }

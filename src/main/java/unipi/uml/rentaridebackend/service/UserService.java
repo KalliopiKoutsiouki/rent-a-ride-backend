@@ -1,6 +1,7 @@
 package unipi.uml.rentaridebackend.service;
 
 import org.springframework.stereotype.Service;
+import unipi.uml.rentaridebackend.exception.UserNotFoundException;
 import unipi.uml.rentaridebackend.model.User;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface UserService {
 
     boolean deleteUser(Long userId);
 
-    Optional<User> getUserByUserName(String userName);
+    Optional<User> getUserByUserName(String userName) throws UserNotFoundException;
 }

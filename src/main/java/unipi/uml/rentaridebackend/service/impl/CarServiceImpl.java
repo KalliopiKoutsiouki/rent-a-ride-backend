@@ -31,7 +31,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAllAvailableCars(LocalDate from, LocalDate to) {
-        return Optional.of(carRepository.findAllAvailableCarsFromDateToDate(from, to))
+        return Optional.of(carRepository.findAllByIsAvailableTrueAndFromDateGreaterThanEqualAndToDateLessThanEqual(from, to))
                 .orElseThrow(() -> new RuntimeException("No available cars found for: " + from.toString() + " - " + to.toString()));
     }
 

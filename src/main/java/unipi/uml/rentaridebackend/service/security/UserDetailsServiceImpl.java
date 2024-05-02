@@ -16,12 +16,14 @@ import java.util.stream.Collectors;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
+    private UserRepository repository;
 
-    private final UserRepository repository;
-
-    public UserDetailsServiceImpl(final UserRepository repository) {
-        this.repository = repository;
-    }
+//    private final UserRepository repository;
+//
+//    public UserDetailsServiceImpl(final UserRepository repository) {
+//        this.repository = repository;
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
