@@ -40,6 +40,12 @@ public class Car {
     @Column(name = "TO_DATE")
     private LocalDate toDate;
 
+    @Column(name = "LONG")
+    private float longitude;
+
+    @Column(name = "LAT" )
+    private float latitude;
+
     @JsonIgnore
     @OneToOne(mappedBy = "car")
     private Reservation reservation;
